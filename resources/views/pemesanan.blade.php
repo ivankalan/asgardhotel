@@ -32,48 +32,50 @@
 <body>
     @extends('layouts.navbar')
         <div class="container" style="margin-top: 100px">
-            <form action="/pemesanan" method="post">
-                @csrf
-                <div class="row" style="margin-top: 100px">
-                    <div class="col">
-                        <label for="" class="form-label">Tanggal Check In</label>
-                        <input type="date" class="form-control" name="tanggal_cek_in">
+            <div class="card rounded-3">
+                <form action="/pemesanan" method="post">
+                    @csrf
+                    <div class="row" style="margin-top: 100px">
+                        <div class="col">
+                            <label for="" class="form-label">Tanggal Check In</label>
+                            <input type="date" class="form-control" name="tanggal_cek_in">
+                        </div>
+                        <div class="col">
+                            <label for="" class="form-label">Tanggal Check Out</label>
+                            <input type="date" class="form-control" name="tanggal_cek_out">
+                        </div>
+                        <div class="col">
+                            <label for="" class="form-label">Jumlah Kamar</label>
+                            <input type="text" class="form-control" name="jumlah_kamar">
+                        </div>
                     </div>
-                    <div class="col">
-                        <label for="" class="form-label">Tanggal Check Out</label>
-                        <input type="date" class="form-control" name="tanggal_cek_out">
+                    <div class="mt-2">
+                        <label for="" class="form-label">Nama Pemesan</label>
+                        <input type="text" class="form-control" name="nama_pemesan">
                     </div>
-                    <div class="col">
-                        <label for="" class="form-label">Jumlah Kamar</label>
-                        <input type="text" class="form-control" name="jumlah_kamar">
+                    <div class="mt-2">
+                        <label for="" class="form-label">Email</label>
+                        <input type="text" class="form-control" name="email">
                     </div>
-                </div>
-                <div class="mt-2">
-                    <label for="" class="form-label">Nama Pemesan</label>
-                    <input type="text" class="form-control" name="nama_pemesan">
-                </div>
-                <div class="mt-2">
-                    <label for="" class="form-label">Email</label>
-                    <input type="text" class="form-control" name="email">
-                </div>
-                <div class="mt-2">
-                    <label for="" class="form-label">Nomor Handphone</label>
-                    <input type="text" class="form-control" name="no_telp">
-                </div>
-                <div class="mt-2">
-                    <label for="" class="form-label">Nama Tamu</label>
-                    <input type="text" class="form-control" name="nama_tamu">
-                </div>
-                <div class="mt-2">
-                    <label for="" class="form-label">Tipe Kamar</label>
-                    <select class="form-select" aria-label="Default select example" name="tipe_kamar">
-                        <option selected>...</option>
-                        <option value="1">Superior</option>
-                        <option value="2">Deluxe</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-success mt-4">Konfirmasi Pemesanan</button>
-            </form>
+                    <div class="mt-2">
+                        <label for="" class="form-label">Nomor Handphone</label>
+                        <input type="text" class="form-control" name="no_telp">
+                    </div>
+                    <div class="mt-2">
+                        <label for="" class="form-label">Nama Tamu</label>
+                        <input type="text" class="form-control" name="nama_tamu">
+                    </div>
+                    <div class="mt-2">
+                        <label for="" class="form-label">Tipe Kamar</label>
+                        <select class="form-select" aria-label="Default select example" name="tipe_kamar">
+                            <option selected>...</option>
+                            <option value="1">Superior</option>
+                            <option value="2">Deluxe</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success mt-4">Konfirmasi Pemesanan</button>
+                </form>
+            </div>
         </div>
   <!-- ======= Footer ======= -->
   <footer id="footer" style="margin-top: 100px">

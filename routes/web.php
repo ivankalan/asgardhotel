@@ -1,6 +1,8 @@
 <?php
-use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\KamarController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PemesananController;
 
 /*
@@ -14,8 +16,14 @@ use App\Http\Controllers\PemesananController;
 |
 */
 
-Route::get('/', [KamarController::class, 'index']);
+Route::get('/', [PagesController::class, 'index']);
 
-Route::get('/pemesanan', [KamarController::class, 'pemesanan']);
+Route::get('/pemesanan', [PemesananController::class, 'index']);
+
+Route::get('/resepsionis', [PemesananController::class, 'resepsionis']);
 
 Route::post('/pemesanan', [PemesananController::class, 'store']);
+
+Route::post('/status/{id}', [PemesananController::class, 'status']);
+
+Route::resource('/kamar', KamarController::class);

@@ -16,8 +16,16 @@ class PemesananController extends Controller
      */
     public function index()
     {
-        //
+        return view('pemesanan');
     }
+
+    public function resepsionis()
+    {
+        return view('resepsionis', [
+            'pemesanan' => Pemesanan::All()
+        ]);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -49,6 +57,15 @@ class PemesananController extends Controller
     ]);
 
     return view('beranda');
+    }
+
+    public function status(Request $request, $id)
+    {
+        Pemesanan::find($id)->update([
+            'status' => $request->status
+        ]);
+
+        return redirect('resepsionis');
     }
 
     /**

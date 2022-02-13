@@ -15,12 +15,7 @@ class KamarController extends Controller
      */
     public function index()
     {
-        return view('beranda');
-    }
-
-    public function pemesanan()
-    {
-        	return view('pemesanan');
+        return view('admin.kamar.index');
     }
 
     /**
