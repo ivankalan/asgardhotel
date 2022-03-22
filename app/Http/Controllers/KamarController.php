@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kamar;
 use App\Http\Requests\StoreKamarRequest;
 use App\Http\Requests\UpdateKamarRequest;
+use Illuminate\Http\Request;
 
 class KamarController extends Controller
 {
@@ -15,7 +16,9 @@ class KamarController extends Controller
      */
     public function index()
     {
-        return view('admin.kamar.index');
+        return view('admin.kamar.index', [
+            'kamar' => Kamar::all()
+        ]);
     }
 
     /**
@@ -34,9 +37,24 @@ class KamarController extends Controller
      * @param  \App\Http\Requests\StoreKamarRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreKamarRequest $request)
+    public function store(Request $request)
     {
-        //
+        $request->validate([
+            'tipe_kamar' => 'required',
+            'jumlah_kamar' => 'required',
+            'image' => 'required|image',
+
+        ]);
+
+        $image = $request->file('image')->store('kamar');
+
+        Kamar::create([
+            'tipe_kamar' => $request->tipe_kamar,
+            'jumlah_kamar' => $request->jumlah_kamar,
+            'image' => $image,
+        ]);
+
+        return redirect()->back();
     }
 
     /**
@@ -58,7 +76,9 @@ class KamarController extends Controller
      */
     public function edit(Kamar $kamar)
     {
-        //
+        return view('admin.kamar.edit', [
+            'kamar' => Kamar::find($kamar->id),
+        ]);
     }
 
     /**
@@ -68,9 +88,30 @@ class KamarController extends Controller
      * @param  \App\Models\Kamar  $kamar
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateKamarRequest $request, Kamar $kamar)
+    public function update(Request $request, Kamar $kamar)
     {
-        //
+        $request->validate([
+            'tipe_kamar' => 'required',
+            'jumlah_kamar' => 'required',
+            'image' => 'image',
+        ]);
+
+        $image = $request->file('image');
+
+        if (!$image){
+            $namaImage = $request->image_lama;
+        } else {
+            $namaImage = $image->store('kamar');
+            unlink('storage/'. $request->image_lama);
+        }
+
+        Kamar::find($kamar->id)->update([
+            'tipe_kamar' => $request->tipe_kamar,
+            'jumlah_kamar' => $request->jumlah_kamar,
+            'image' => $namaImage,
+        ]);
+
+        return redirect('/kamar');
     }
 
     /**
@@ -81,6 +122,9 @@ class KamarController extends Controller
      */
     public function destroy(Kamar $kamar)
     {
-        //
+        unlink('storage/' . $kamar->image);
+        Kamar::destroy($kamar->id);
+
+        return redirect('/kamar');
     }
 }

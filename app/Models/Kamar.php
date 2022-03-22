@@ -13,4 +13,8 @@ class Kamar extends Model
     {
         return $this->hasMany(FasilitasKamar::class);
     }
+    public function pemesanan()
+    {
+        return $this->hasMany(Pemesanan::class);
+    }
 }

@@ -23,7 +23,7 @@ class CreatePemesanansTable extends Migration
             $table->string('email');
             $table->integer('no_telp');
             $table->string('nama_tamu');
-            $table->string('tipe_kamar');
+            $table->foreignId('kamar_id')->references('id')->on('kamars');
             $table->string('status')->default('booking');
         });
     }

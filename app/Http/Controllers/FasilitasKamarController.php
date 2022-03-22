@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\FasilitasKamar;
 use App\Http\Requests\StoreFasilitasKamarRequest;
 use App\Http\Requests\UpdateFasilitasKamarRequest;
+use App\Models\Kamar;
+use Illuminate\Http\Client\Request as ClientRequest;
+use Illuminate\Http\Request;
 
 class FasilitasKamarController extends Controller
 {
@@ -15,7 +18,10 @@ class FasilitasKamarController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.fasilitaskamar.index', [
+            'fasilitas' => FasilitasKamar::all(),
+            'kamar' => Kamar::all()
+        ]);
     }
 
     /**
@@ -34,9 +40,19 @@ class FasilitasKamarController extends Controller
      * @param  \App\Http\Requests\StoreFasilitasKamarRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreFasilitasKamarRequest $request)
+    public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kamar_id' => 'required',
+            'nama_fasilitas' => 'required|max:200',
+        ]);
+
+        FasilitasKamar::create([
+            'kamar_id' => $request->kamar_id,
+            'nama_fasilitas' => $request->nama_fasilitas,
+        ]);
+
+        return redirect('/fasilitas-kamar');
     }
 
     /**
@@ -58,7 +74,10 @@ class FasilitasKamarController extends Controller
      */
     public function edit(FasilitasKamar $fasilitasKamar)
     {
-        //
+        return view('admin.fasilitaskamar.edit', [
+            'fasilitas' => FasilitasKamar::find($fasilitasKamar->id),
+            'kamar' => Kamar::all()
+        ]);
     }
 
     /**
@@ -68,9 +87,19 @@ class FasilitasKamarController extends Controller
      * @param  \App\Models\FasilitasKamar  $fasilitasKamar
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateFasilitasKamarRequest $request, FasilitasKamar $fasilitasKamar)
+    public function update(Request $request, FasilitasKamar $fasilitasKamar)
     {
-        //
+        $request->validate([
+            'kamar_id' => 'required',
+            'nama_fasilitas' => 'required|max:200',
+        ]);
+
+        FasilitasKamar::find($fasilitasKamar->id)->update([
+            'kamar_id' => $request->kamar_id,
+            'nama_fasilitas' => $request->nama_fasilitas,
+        ]);
+
+        return redirect('/fasilitas-kamar');
     }
 
     /**
@@ -81,6 +110,8 @@ class FasilitasKamarController extends Controller
      */
     public function destroy(FasilitasKamar $fasilitasKamar)
     {
-        //
+        FasilitasKamar::destroy($fasilitasKamar->id);
+
+        return redirect('/fasilitas-kamar');
     }
 }

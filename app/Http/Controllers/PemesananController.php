@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pemesanan;
 use App\Http\Requests\StorePemesananRequest;
 use App\Http\Requests\UpdatePemesananRequest;
+use App\Models\Kamar;
 use Illuminate\Http\Request;
 
 class PemesananController extends Controller
@@ -16,7 +17,9 @@ class PemesananController extends Controller
      */
     public function index()
     {
-        return view('pemesanan');
+        return view('user.pemesanan', [
+            'kamar' => Kamar::all()
+        ]);
     }
 
     public function resepsionis()
@@ -45,6 +48,17 @@ class PemesananController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'tanggal_cek_in' => 'required|max:200',
+            'tanggal_cek_out' => 'required|max:200',
+            'jumlah_kamar' => 'required|max:200',
+            'nama_pemesan' => 'required|max:200',
+            'email' => 'required|max:200',
+            'no_telp' => 'required|max:200',
+            'nama_tamu' => 'required|max:200',
+            'kamar_id' => 'required|max:200',
+        ]);
+
         Pemesanan::create([
         'tanggal_cek_in' => $request->tanggal_cek_in,
         'tanggal_cek_out' => $request->tanggal_cek_out,
@@ -53,10 +67,10 @@ class PemesananController extends Controller
         'email' => $request->email,
         'no_telp' => $request->no_telp,
         'nama_tamu' => $request->nama_tamu,
-        'tipe_kamar' => $request->tipe_kamar,
+        'kamar_id' => $request->kamar_id,
     ]);
 
-    return view('beranda');
+    return view('pages.beranda');
     }
 
     public function status(Request $request, $id)
@@ -64,6 +78,14 @@ class PemesananController extends Controller
         Pemesanan::find($id)->update([
             'status' => $request->status
         ]);
+
+        if ($request->status === 'Check Out') {
+            $p = Pemesanan::where('id', $id)->first();
+
+            Kamar::find($p->kamar_id)->update([
+                'jumlah_kamar' => $p->kamar->jumlah_kamar + $p->jumlah_kamar
+            ]);
+        }
 
         return redirect('resepsionis');
     }
