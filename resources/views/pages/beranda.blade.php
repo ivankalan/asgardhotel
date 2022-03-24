@@ -72,6 +72,50 @@
         </div>
     </section><!-- End Hero -->
     <main id="main">
+
+        <div class="container">
+            <div class="card my-5">
+                <div class="card-body mb-2">
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="" class="form-label">Tanggal Check In</label>
+                            <input type="date" class="form-control @error('tanggal_cek_in') is-invalid @enderror" name="tanggal_cek_in" placeholder="Tanggal Check In" value="{{ old('tanggal_cek_in') }}">
+                            @error('tanggal_cek_in')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="col">
+                            <label for="" class="form-label">Tanggal Check Out</label>
+                            <input type="date" class="form-control @error('tanggal_cek_out') is-invalid @enderror" name="tanggal_cek_out" placeholder="Tanggal Check Out" value="{{ old('tanggal_cek_out') }}">
+                            @error('tanggal_cek_out')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="col">
+                            <label for="" class="form-label">Jumlah Kamar</label>
+                            <input type="text" class="form-control @error('jumlah_kamar') is-invalid @enderror" name="jumlah_kamar" value="{{ old('jumlah_kamar') }}">
+                            @error('jumlah_kamar')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <div class="col col-sm-1 mt-4">
+                            <button class="btn btn-primary mt-2">Pesan</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
         <!-- ======= Counts Section ======= -->
         <section id="counts" class="counts">
             <div class="container" data-aos="fade-up">

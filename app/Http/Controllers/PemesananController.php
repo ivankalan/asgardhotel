@@ -60,15 +60,16 @@ class PemesananController extends Controller
         ]);
 
         Pemesanan::create([
-        'tanggal_cek_in' => $request->tanggal_cek_in,
-        'tanggal_cek_out' => $request->tanggal_cek_out,
-        'jumlah_kamar' => $request->jumlah_kamar,
-        'nama_pemesan' => $request->nama_pemesan,
-        'email' => $request->email,
-        'no_telp' => $request->no_telp,
-        'nama_tamu' => $request->nama_tamu,
-        'kamar_id' => $request->kamar_id,
-    ]);
+            'id_user' => $request->id_user,
+            'tanggal_cek_in' => $request->tanggal_cek_in,
+            'tanggal_cek_out' => $request->tanggal_cek_out,
+            'jumlah_kamar' => $request->jumlah_kamar,
+            'nama_pemesan' => $request->nama_pemesan,
+            'email' => $request->email,
+            'no_telp' => $request->no_telp,
+            'nama_tamu' => $request->nama_tamu,
+            'kamar_id' => $request->kamar_id,
+        ]);
 
     return view('pages.beranda');
     }

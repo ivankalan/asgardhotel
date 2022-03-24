@@ -21,6 +21,7 @@
 
     <form action="/pemesanan" method="post" class="my-4">
         @csrf
+        <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">
         <div class="row">
             <div class="col">
                 <label for="" class="form-label">Tanggal Check In</label>

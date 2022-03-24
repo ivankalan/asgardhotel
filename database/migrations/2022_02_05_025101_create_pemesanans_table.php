@@ -15,6 +15,7 @@ class CreatePemesanansTable extends Migration
     {
         Schema::create('pemesanans', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_user');
             $table->timestamps();
             $table->date('tanggal_cek_in');
             $table->date('tanggal_cek_out');
