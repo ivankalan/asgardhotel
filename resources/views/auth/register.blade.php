@@ -96,7 +96,7 @@
 <div class="register-box">
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../../index2.html" class="h1"><b>Asard Hotel</b></a>
+      <a href="../../index2.html" class="h1"><b>Asgard Hotel</b></a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Buat Akun Baru</p>

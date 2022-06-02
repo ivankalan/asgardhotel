@@ -107,7 +107,7 @@
                         </div>
 
                         <div class="col col-sm-1 mt-4">
-                            <button class="btn btn-primary mt-2">Pesan</button>
+                            <a href="/login" class="btn btn-primary mt-2">Pesan</a>
                         </div>
 
                     </div>

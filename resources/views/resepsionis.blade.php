@@ -71,7 +71,7 @@
                                                 </form>
 
                                                 @if ($p->status === 'Check Out')
-                                                    <span class="btn btn-info">Tuntas</span>
+                                                    <span class="btn btn-info">Selesai</span>
                                                 @endif
 
                                             </td>

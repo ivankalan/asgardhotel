@@ -23,7 +23,38 @@
                         @yield('content-header')
                     </div>
                 </div>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header text-center">
+                                    <h5 class="fw-bold text-center">Selamat Datang di Asgard Hotel</h5>
+                                    {{-- {{ __('Selamat Datang di Asgard Hotel') }} --}}
+                                </div>
 
+                                <div class="card-body text-center">
+                                    @if(session('status'))
+                                        <div class="alert alert-success" role="alert">
+                                            {{ session('status') }}
+                                        </div>
+                                    @endif
+
+                                    {{ __('Kamu Login sebagai Admin') }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- <div class="container">
+                    <div class="card text-center">
+                        <div class="card-header">
+                          Featured
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Special title treatment</h5>
+                        </div>
+                    </div>
+                </div> --}}
                 <section class="content">
                     <div class="container-fluid">
                         @yield('content')

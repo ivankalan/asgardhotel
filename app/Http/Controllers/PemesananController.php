@@ -71,7 +71,7 @@ class PemesananController extends Controller
             'kamar_id' => $request->kamar_id,
         ]);
 
-    return view('pages.beranda');
+    return redirect('/riwayat-pemesanan');
     }
 
     public function status(Request $request, $id)
